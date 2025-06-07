@@ -1,0 +1,287 @@
+<html>
+  <head>
+    <title>Cooking Hub - Xác Nhận Thanh Toán Đơn Hàng {{orderCode}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <!--[if !mso]><!-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<![endif]-->
+    <style type="text/css">
+      /* General Reset */ body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } table, td {
+      mso-table-lspace: 0pt; mso-table-rspace: 0pt; } img { -ms-interpolation-mode: bicubic; border: 0; height: auto;
+      line-height: 100%; outline: none; text-decoration: none; } table { border-collapse: collapse !important; } body {
+      height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; font-family: 'Segoe
+      UI', Roboto, Arial, sans-serif; font-size: 16px; line-height: 1.6; background-color: #fef7ed; color: #334155; } /*
+      Specific Styles */ a { color: #ea580c; text-decoration: none; } a:hover { text-decoration: underline; }
+      .button:hover { opacity: 0.9; } /* Responsive Styles */ @media screen and (max-width: 600px) { .content-width {
+      width: 100% !important; max-width: 100% !important; } .padding-mobile { padding-left: 15px !important;
+      padding-right: 15px !important; } .header-padding { padding: 20px 15px !important; } .content-padding { padding:
+      25px 20px !important; } h1 { font-size: 22px !important; } .logo { max-width: 120px !important; } .footer-social a
+      { margin: 0 5px !important; } }
+    </style>
+  </head>
+
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      background-color: #fef7ed;
+      color: #334155;
+    "
+  >
+    <!--[if mso | IE]>
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+    <tr>
+      <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+  <![endif]-->
+    <div
+      class="content-width"
+      style="
+        max-width: 600px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      "
+    >
+      <div
+        class="header-padding"
+        style="
+          background: linear-gradient(100deg, #ea580c 0%, #dc2626 100%);
+          text-align: center;
+          padding: 30px 20px;
+          color: white;
+          position: relative;
+        "
+      >
+        <div style="font-size: 48px; margin-bottom: 15px;">🍳✅</div>
+        <h1 style="margin: 0; font-size: 24px; font-weight: 700">Thanh Toán Thành Công!</h1>
+        <p style="margin: 10px 0 0; opacity: 0.9; font-size: 16px">Đơn hàng ẩm thực: {{orderCode}}</p>
+      </div>
+
+      <div class="content-padding" style="padding: 35px">
+        <p style="margin-top: 0; font-size: 17px; color: #334155">Kính gửi Đầu bếp {{name}}!</p>
+
+        <p style="font-size: 17px; color: #334155; margin-bottom: 25px; line-height: 1.6">
+          Cooking Hub xin trân trọng thông báo: Chúng tôi đã nhận được thanh toán thành công cho đơn hàng dụng cụ nấu ăn
+          và nguyên liệu
+          <strong>{{orderCode}}</strong>
+          của bạn.
+        </p>
+
+        <p style="font-size: 17px; color: #334155; margin-bottom: 25px; line-height: 1.6">
+          Cảm ơn bạn đã tin tưởng Cooking Hub để nâng cao kỹ năng nấu nướng! 🧑‍🍳
+        </p>
+
+        <div
+          style="
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #fef7ed;
+            border-radius: 8px;
+            border-left: 4px solid #ea580c;
+          "
+        >
+          <p style="margin: 0 0 15px; font-weight: 600; font-size: 16px; color: #ea580c">🛒 Thông tin đơn hàng:</p>
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="color: #475569">
+            <tr>
+              <td style="padding: 5px 0; font-weight: 600; width: 150px">Mã đơn hàng:</td>
+              <td style="padding: 5px 0">{{orderCode}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 0; font-weight: 600">Ngày đặt hàng:</td>
+              <td style="padding: 5px 0">{{orderDate}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 0; font-weight: 600">Phương thức:</td>
+              <td style="padding: 5px 0">{{paymentMethod}}</td>
+              <!-- Ví dụ: Chuyển khoản ngân hàng, Ví điện tử -->
+            </tr>
+            <tr>
+              <td style="padding: 5px 0; font-weight: 600">Tổng thanh toán:</td>
+              <td style="padding: 5px 0; font-weight: 700; color: #ea580c">{{paymentAmount}}</td>
+              <!-- Ví dụ: 1.500.000 VND -->
+            </tr>
+          </table>
+        </div>
+
+        <!-- ORDER ITEMS PREVIEW -->
+        <div
+          style="
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f0fdf4;
+            border-radius: 8px;
+            border-left: 4px solid #22c55e;
+          "
+        >
+          <p style="margin: 0 0 15px; font-weight: 600; font-size: 16px; color: #22c55e">🍽️ Sản phẩm đã đặt:</p>
+          <ul style="margin: 0; padding-left: 20px; color: #475569">
+            <li style="margin-bottom: 8px">🔪 Bộ dao chuyên nghiệp</li>
+            <li style="margin-bottom: 8px">🥘 Chảo chống dính cao cấp</li>
+            <li style="margin-bottom: 8px">🧄 Gia vị đặc biệt từ Việt Nam</li>
+            <li>📚 Sách công thức nấu ăn độc quyền</li>
+          </ul>
+          <p style="margin: 15px 0 0; font-size: 14px; color: #64748b; font-style: italic">
+            * Danh sách chi tiết sẽ có trong email riêng hoặc tại trang chi tiết đơn hàng
+          </p>
+        </div>
+
+        <p style="font-size: 17px; color: #334155; margin-bottom: 25px; line-height: 1.6">
+          Đơn hàng của bạn đang được đóng gói cẩn thận và sẽ sớm được giao đến tay bạn. Chúng tôi sẽ cập nhật thông tin
+          vận chuyển qua email và SMS trong thời gian sớm nhất.
+        </p>
+
+        <!-- CHEF MESSAGE -->
+        <div
+          style="
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #ea580c;
+          "
+        >
+          <p style="margin: 0 0 10px; font-style: italic; color: #64748b">
+            "Mỗi dụng cụ nấu ăn chất lượng sẽ giúp bạn tạo ra những món ăn tuyệt vời hơn. Chúc bạn có những trải nghiệm
+            nấu nướng thú vị!"
+          </p>
+          <p style="margin: 0; font-weight: 600; color: #ea580c">
+            - Đỗ Dương Đăng Khoa, Founder Cooking Hub (@khoahocmai)
+          </p>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0">
+          <a
+            href="https://cookinghub.com/orders/{{orderCode}}"
+            class="button"
+            style="
+              display: inline-block;
+              background-color: #ea580c;
+              color: white;
+              text-decoration: none;
+              padding: 14px 30px;
+              border-radius: 8px;
+              font-weight: 600;
+              font-size: 16px;
+              box-shadow: 0 3px 8px rgba(234, 88, 12, 0.2);
+            "
+          >
+            🍳 Xem Chi Tiết Đơn Hàng
+          </a>
+        </div>
+
+        <!-- NEXT STEPS -->
+        <div
+          style="
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #fef2f2;
+            border-radius: 8px;
+            border-left: 4px solid #f87171;
+          "
+        >
+          <p style="margin: 0 0 15px; font-weight: 600; font-size: 16px; color: #dc2626">📦 Bước tiếp theo:</p>
+          <ol style="margin: 0; padding-left: 20px; color: #475569">
+            <li style="margin-bottom: 8px">Chúng tôi sẽ đóng gói và chuẩn bị đơn hàng (1-2 ngày)</li>
+            <li style="margin-bottom: 8px">Gửi mã vận đơn qua email và SMS</li>
+            <li style="margin-bottom: 8px">Giao hàng tận nơi (2-5 ngày tùy khu vực)</li>
+            <li>Bạn nhận hàng và bắt đầu nấu những món ngon!</li>
+          </ol>
+        </div>
+
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center">
+          <p style="margin: 0; color: #64748b; font-size: 15px">
+            Nếu bạn có bất kỳ thắc mắc nào về đơn hàng, xin vui lòng liên hệ
+            <br />
+            <a href="mailto:support@cookinghub.com" style="color: #ea580c; text-decoration: none; font-weight: 600">
+              đội ngũ Chăm sóc Khách hàng
+            </a>
+            (Hotline: 1900-COOK-HUB) để được hỗ trợ.
+          </p>
+        </div>
+      </div>
+
+      <div style="background-color: #fef7ed; padding: 25px; text-align: center; border-top: 1px solid #fed7aa">
+        <p style="margin: 0 0 20px; color: #475569; font-size: 14px">© 2025 Cooking Hub by Đỗ Dương Đăng Khoa. Tất cả
+          các quyền được bảo lưu.</p>
+        <div class="footer-social" style="margin-bottom: 15px">
+          <a
+            href="#"
+            style="
+              display: inline-block;
+              margin: 0 8px;
+              width: 32px;
+              height: 32px;
+              background-color: #fed7aa;
+              border-radius: 50%;
+              padding: 6px;
+              box-sizing: border-box;
+            "
+          >
+            <svg viewBox="0 0 24 24" fill="#EA580C" style="width: 100%; height: 100%">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              />
+            </svg>
+          </a>
+          <a
+            href="#"
+            style="
+              display: inline-block;
+              margin: 0 8px;
+              width: 32px;
+              height: 32px;
+              background-color: #fed7aa;
+              border-radius: 50%;
+              padding: 6px;
+              box-sizing: border-box;
+            "
+          >
+            <svg viewBox="0 0 24 24" fill="#EA580C" style="width: 100%; height: 100%">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              />
+            </svg>
+          </a>
+          <a
+            href="#"
+            style="
+              display: inline-block;
+              margin: 0 8px;
+              width: 32px;
+              height: 32px;
+              background-color: #fed7aa;
+              border-radius: 50%;
+              padding: 6px;
+              box-sizing: border-box;
+            "
+          >
+            <svg viewBox="0 0 24 24" fill="#EA580C" style="width: 100%; height: 100%">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+              />
+            </svg>
+          </a>
+        </div>
+        <p style="margin: 10px 0 0; color: #64748b; font-size: 13px">
+          <a href="https://cookinghub.com" style="color: #ea580c; text-decoration: none">cookinghub.com</a>
+          |
+          <a href="#" style="color: #ea580c; text-decoration: none">Chính sách bảo mật</a>
+          |
+          <a href="#" style="color: #ea580c; text-decoration: none">Điều khoản sử dụng</a>
+        </p>
+      </div>
+    </div>
+    <!--[if mso | IE]>
+      </td>
+    </tr>
+  </table>
+  <![endif]-->
+  </body>
+</html>
