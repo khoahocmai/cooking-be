@@ -11,9 +11,9 @@ export class Ingredient extends BaseEntity {
   name: string
 
   @Column({ type: "varchar", nullable: false })
-  type: string
+  type: string // e.g., "vegetable", "fruit", "dairy", etc.
 
-  @Column({ type: "varchar", nullable: false })
+  @Column({ type: "varchar", nullable: true })
   imageUrl: string
 
   @OneToMany(() => RecipeIngredient, (recipeIngredient) => recipeIngredient.ingredient)

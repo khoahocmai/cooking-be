@@ -11,4 +11,4 @@ import { Account } from "./entities/account.entity"
   providers: [AccountService],
   exports: [AccountService]
 })
-export class UserModule {}
+export class AccountModule {}

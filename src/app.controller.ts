@@ -1,6 +1,7 @@
 import { Controller, Get } from "@nestjs/common"
 import { AppService } from "./app.service"
 import { Public } from "./decorator/customize"
+import responses from "./helpers/responses"
 
 @Controller()
 export class AppController {
@@ -8,7 +9,8 @@ export class AppController {
 
   @Get("health")
   @Public()
-  checkHealth(): string {
-    return this.appService.checkHealth()
+  checkHealth() {
+    const response = this.appService.checkHealth()
+    return responses.response200OK(response)
   }
 }

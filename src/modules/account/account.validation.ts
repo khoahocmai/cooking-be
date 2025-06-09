@@ -1,4 +1,4 @@
-import { BaseResponse, GetQueryRequest } from "@/schemas/root.validation"
+import { BaseResponseWithData, GetQueryRequest } from "@/schemas/root.validation"
 import { z } from "zod"
 
 const UserDetailSchema = z.object({
@@ -29,7 +29,7 @@ export const GetUserQueryRequest = GetQueryRequest.extend({
 }).strict()
 export type GetUserQueryRequestType = z.infer<typeof GetUserQueryRequest>
 
-export const GetUsersResponse = BaseResponse.extend({
+export const GetUsersResponse = BaseResponseWithData.extend({
   data: GetAllUserSchema
 })
 export type GetUsersResponseType = z.TypeOf<typeof GetUsersResponse>
@@ -46,7 +46,7 @@ const GetUserByIdSchema = z.object({
   createAt: z.date(),
   updateAt: z.date()
 })
-export const GetUserByIdResponse = BaseResponse.extend({
+export const GetUserByIdResponse = BaseResponseWithData.extend({
   data: GetUserByIdSchema
 })
 export type GetUserByIdResponseType = z.TypeOf<typeof GetUserByIdResponse>
@@ -59,7 +59,7 @@ const GetUserProfile = z.object({
   accountType: z.string(),
   userDetail: UserDetailSchema.nullable()
 })
-export const GetUserProfileResponse = BaseResponse.extend({
+export const GetUserProfileResponse = BaseResponseWithData.extend({
   data: GetUserProfile
 })
 export type GetUserProfileResponseType = z.TypeOf<typeof GetUserProfileResponse>
@@ -129,7 +129,7 @@ const GetMyChildCourseSchema = z.array(
     })
     .strict()
 )
-export const GetMyChildCourseResponse = BaseResponse.extend({
+export const GetMyChildCourseResponse = BaseResponseWithData.extend({
   data: GetMyChildCourseSchema
 })
 export type GetMyChildCourseResponseType = z.infer<typeof GetMyChildCourseResponse>
@@ -149,7 +149,7 @@ const CertificateItemSchema = z.object({
   completedDate: z.string().or(z.date()),
   score: z.number().min(0).max(100)
 })
-export const GetCertificateResponse = BaseResponse.extend({
+export const GetCertificateResponse = BaseResponseWithData.extend({
   data: z.array(CertificateItemSchema)
 })
 export type GetCertificateResponseType = z.infer<typeof GetCertificateResponse>
@@ -162,7 +162,7 @@ export const GetTopGameKidSchema = z.object({
   firstName: z.string(),
   lastName: z.string()
 })
-export const GetTopGameKidResponse = BaseResponse.extend({
+export const GetTopGameKidResponse = BaseResponseWithData.extend({
   data: z.array(GetTopGameKidSchema)
 })
 export type GetTopGameKidResponseType = z.infer<typeof GetTopGameKidResponse>
@@ -192,7 +192,7 @@ const CourseSchema = z.object({
   isVisible: z.boolean()
 })
 
-export const GetMyCourseResponse = BaseResponse.extend({
+export const GetMyCourseResponse = BaseResponseWithData.extend({
   data: z.array(CourseSchema)
 })
 export type GetMyCourseResponseType = z.infer<typeof GetMyCourseResponse>

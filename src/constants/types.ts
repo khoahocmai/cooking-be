@@ -20,13 +20,6 @@ export type Pagination = {
   totalPage: number
 }
 
-export type ApiResponse<T = any> = {
-  statusCode: number
-  message: string
-  messageDetail: string
-  data: T
-}
-
 export enum Gender {
   MALE,
   FEMALE,

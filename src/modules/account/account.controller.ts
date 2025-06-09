@@ -2,7 +2,7 @@ import { Role, AccountPayload } from "@/constants/types"
 import { RequireRole } from "@/decorator/customize"
 import responses from "@/helpers/responses"
 import { ZodValidationPipe } from "@/middlewares/custom-zod-validation-filter"
-import { BaseResponseType, UUIDParamRequest, UUIDParamRequestType } from "@/schemas/root.validation"
+import { BaseResponseWithDataType, UUIDParamRequest, UUIDParamRequestType } from "@/schemas/root.validation"
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req } from "@nestjs/common"
 import {
   ApiBearerAuth,
@@ -50,7 +50,7 @@ export class AccountController {
   @ApiConflictResponse({ description: "Email already exists | Username already exists" })
   async create(
     @Body(new ZodValidationPipe(CreateUserRequest)) dataRequest: CreateUserRequestType
-  ): Promise<BaseResponseType> {
+  ): Promise<BaseResponseWithDataType> {
     const dataResponse = await this.accountService.create(dataRequest)
     return responses.response200OK(dataResponse)
   }
@@ -120,7 +120,7 @@ export class AccountController {
   @ApiOkResponse({ description: "User has been banned successfully" })
   async handleBan(
     @Param("userId", new ZodValidationPipe(UUIDParamRequest)) userId: UUIDParamRequestType
-  ): Promise<BaseResponseType> {
+  ): Promise<BaseResponseWithDataType> {
     const response = await this.accountService.handleBan(userId)
     return responses.response200OK(response)
   }

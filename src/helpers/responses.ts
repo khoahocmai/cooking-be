@@ -1,6 +1,11 @@
-import { ApiResponse, Pagination } from "@/constants/types"
 import { HttpException } from "@nestjs/common"
-import { consoleLogCustom } from "./utils"
+
+export interface ApiResponse<T = any> {
+  statusCode: number
+  message: string
+  messageDetail: string
+  data: T
+}
 
 const Response = <T = any>(statusCode: number, message: string, messageDetail: string, data?: T): ApiResponse<T> => {
   return {

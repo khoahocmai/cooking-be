@@ -2,8 +2,8 @@ import { AccountPayload } from "@/constants/types"
 import { Public } from "@/decorator/customize"
 import responses from "@/helpers/responses"
 import { ZodValidationPipe } from "@/middlewares/custom-zod-validation-filter"
-import { BaseResponseType, UUIDParamRequest, UUIDParamRequestType } from "@/schemas/root.validation"
-import { Body, Controller, Get, Param, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common"
+import { BaseResponseWithDataType, UUIDParamRequest, UUIDParamRequestType } from "@/schemas/root.validation"
+import { Body, Controller, Get, Param, Post, Req, Res, UseGuards, UsePipes } from "@nestjs/common"
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -24,7 +24,6 @@ import {
   ActiveAccountRequestType,
   ChangePasswordRequest,
   ChangePasswordRequestType,
-  LoginRequestType,
   LoginResponseType,
   ReactiveAccountRequestType,
   RegisterRequest,
@@ -107,7 +106,7 @@ export class AuthController {
   @ApiOkResponse({ description: "Please check your email to get the activation code" })
   @ApiBadRequestResponse({ description: "Account not found or has been deleted" })
   @ApiConflictResponse({ description: "Account is already activated" })
-  async requestActive(@Body() data: ReactiveAccountRequestType): Promise<BaseResponseType> {
+  async requestActive(@Body() data: ReactiveAccountRequestType): Promise<BaseResponseWithDataType> {
     const response = await this.authService.requestActive(data.email)
     return responses.response200OK(response)
   }
@@ -121,7 +120,7 @@ export class AuthController {
   @ApiConflictResponse({ description: "Account is already activated" })
   async retryActive(
     @Param("id", new ZodValidationPipe(UUIDParamRequest)) id: UUIDParamRequestType
-  ): Promise<BaseResponseType> {
+  ): Promise<BaseResponseWithDataType> {
     const response = await this.authService.retryActive(id)
     return responses.response200OK(response)
   }
@@ -133,7 +132,7 @@ export class AuthController {
   @ApiOkResponse({ description: "Please check your email to get the new password" })
   @ApiBadRequestResponse({ description: "Account not found" })
   @UsePipes(new ZodValidationPipe(RequestForgotPasswordRequest))
-  async requestForgotPassword(@Body() data: RequestForgotPasswordRequestType): Promise<BaseResponseType> {
+  async requestForgotPassword(@Body() data: RequestForgotPasswordRequestType): Promise<BaseResponseWithDataType> {
     const response = await this.authService.requestForgotPassword(data.email)
     return responses.response200OK(response)
   }
@@ -147,7 +146,7 @@ export class AuthController {
   @ApiNotFoundResponse({ description: "Account not found" })
   @ApiNotFoundResponse({ description: "Code is expired" })
   @UsePipes(new ZodValidationPipe(ResetForgotPasswordRequest))
-  async resetForgotPassword(@Body() data: ResetForgotPasswordRequestType): Promise<BaseResponseType> {
+  async resetForgotPassword(@Body() data: ResetForgotPasswordRequestType): Promise<BaseResponseWithDataType> {
     const response = await this.authService.resetForgotPassword(data)
     return responses.response200OK(response)
   }
@@ -163,7 +162,7 @@ export class AuthController {
   async changePassword(
     @Req() request: ExpressRequest,
     @Body(new ZodValidationPipe(ChangePasswordRequest)) data: ChangePasswordRequestType
-  ): Promise<BaseResponseType> {
+  ): Promise<BaseResponseWithDataType> {
     const user = request.user as AccountPayload
     const response = await this.authService.changePassword(user, data)
     return responses.response200OK(response)
@@ -173,7 +172,7 @@ export class AuthController {
   @ApiOperation({ summary: "Logout" })
   @ApiOkResponse({ description: "Logout successfully" })
   @ApiUnauthorizedResponse({ description: "Invalid token" })
-  async logout(@Req() request: ExpressRequest): Promise<BaseResponseType> {
+  async logout(@Req() request: ExpressRequest): Promise<BaseResponseWithDataType> {
     const user = request.user as AccountPayload
     const response = await this.authService.logout(user)
     return responses.response200OK(response)

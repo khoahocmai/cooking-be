@@ -408,11 +408,21 @@ export function generateStrongPassword(): Promise<string> {
   return this.shuffleString(password)
 } // Tạo mật khẩu mạnh ngẫu nhiên
 
-function shuffleString(str: string): string {
+export function shuffleString(str: string): string {
   const arr = str.split("")
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     ;[arr[i], arr[j]] = [arr[j], arr[i]] // Swap elements
   }
   return arr.join("")
+}
+
+export function toTitleCase(str: string): string {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, " ") // bỏ khoảng trắng thừa
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
 }

@@ -8,15 +8,26 @@ export const Pagination = z.object({
   totalPage: z.number()
 })
 
-export const BaseResponse = z
+const DataSchema = z.union([z.array(z.any()), z.record(z.string(), z.any())])
+
+export const BaseResponseNoData = z
   .object({
     statusCode: z.number(),
     message: z.string(),
     messageDetail: z.string(),
-    data: z.union([z.array(z.any()), z.record(z.string(), z.any())]).optional()
+    data: z.null().optional() // null hoặc undefined
   })
   .strict()
-export type BaseResponseType = z.TypeOf<typeof BaseResponse>
+export type BaseResponseNoDataType = z.infer<typeof BaseResponseNoData>
+export const BaseResponseWithData = z
+  .object({
+    statusCode: z.number(),
+    message: z.string(),
+    messageDetail: z.string(),
+    data: DataSchema
+  })
+  .strict()
+export type BaseResponseWithDataType = z.infer<typeof BaseResponseWithData>
 
 export const UUIDParamRequest = z
   .string({
@@ -31,6 +42,9 @@ export const IdentifierParamRequest = z.string({
   invalid_type_error: "Param has content 'Identifier' must be a valid UUID or slug"
 })
 export type IdentifierParamRequestType = z.infer<typeof IdentifierParamRequest>
+
+export const ArrayOfUUIDsRequest = z.array(UUIDParamRequest)
+export type ArrayOfUUIDsRequestType = z.infer<typeof ArrayOfUUIDsRequest>
 
 export const GetQueryRequest = z
   .object({

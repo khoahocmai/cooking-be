@@ -1,4 +1,4 @@
-import { BaseResponse } from "@/schemas/root.validation"
+import { BaseResponseWithData } from "@/schemas/root.validation"
 import { z } from "zod"
 
 export const LoginRequest = z
@@ -21,7 +21,7 @@ const JWTResponse = z.object({
   refresh_token: z.string()
 })
 
-export const LoginResponse = BaseResponse.extend({
+export const LoginResponse = BaseResponseWithData.extend({
   data: JWTResponse
 })
 export type LoginResponseType = z.TypeOf<typeof LoginResponse>
@@ -49,7 +49,7 @@ export const RegisterRequest = z
   .strict()
 export type RegisterRequestType = z.TypeOf<typeof RegisterRequest>
 
-export const RegisterResponse = BaseResponse.extend({
+export const RegisterResponse = BaseResponseWithData.extend({
   data: z.string()
 }).strict()
 export type RegisterResponseType = z.TypeOf<typeof RegisterResponse>

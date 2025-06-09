@@ -1,5 +1,5 @@
 import googleOauthConfig from "@/configs/google-oauth.config"
-import { UserModule } from "@/modules/account/account.module"
+import { AccountModule } from "@/modules/account/account.module"
 import { CacheModule } from "@nestjs/cache-manager"
 import { forwardRef, Module } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
@@ -14,7 +14,7 @@ import { LocalStrategy } from "./strategies/local.strategy"
 
 @Module({
   imports: [
-    forwardRef(() => UserModule),
+    forwardRef(() => AccountModule),
     JwtModule.registerAsync({
       useFactory: async (configService: ConfigService) => ({
         global: true,
