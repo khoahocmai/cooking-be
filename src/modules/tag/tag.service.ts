@@ -166,4 +166,18 @@ export class TagService {
 
     return messageDetail
   }
+
+  async findTagByIds(ids: string[]): Promise<Tag[]> {
+    if (!ids || ids.length === 0) {
+      throw responses.response400BadRequest("No tag Ids provided", [])
+    }
+
+    // Find the tags by IDs
+    const tags = await this.tagRepository.find({
+      where: ids.map((id) => ({ id })),
+      withDeleted: false // Only target non-deleted tags
+    })
+
+    return tags
+  }
 }

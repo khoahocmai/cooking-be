@@ -10,6 +10,9 @@ export class Recipe extends BaseEntity {
   id: string
 
   @Column({ type: "varchar", nullable: false })
+  creatorId: string
+
+  @Column({ type: "varchar", nullable: false })
   title: string
 
   @Column({ type: "text", nullable: false })
@@ -32,7 +35,7 @@ export class Recipe extends BaseEntity {
 
   @ManyToOne(() => Account, (account) => account.recipes, { onDelete: "CASCADE" })
   @JoinColumn()
-  createdBy: Account
+  creator: Account
 
   @OneToMany(() => RecipeIngredient, (recipeIngredient) => recipeIngredient.recipe)
   recipeIngredients: RecipeIngredient[]

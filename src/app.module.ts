@@ -9,6 +9,7 @@ import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard"
 import { DatabaseModule } from "./configs/database.config"
 import { MailerConfigModule } from "./configs/mailer.config"
 import { IngredientModule } from "./modules/ingredient/ingredient.module"
+import { RecipeModule } from "./modules/recipe/recipe.module"
 import { TagModule } from "./modules/tag/tag.module"
 import { UserInfoModule } from "./modules/user-info/user-info.module"
 
@@ -21,6 +22,7 @@ import { UserInfoModule } from "./modules/user-info/user-info.module"
     UserInfoModule,
     TagModule,
     IngredientModule,
+    RecipeModule,
     AuthModule
   ],
   controllers: [AppController],

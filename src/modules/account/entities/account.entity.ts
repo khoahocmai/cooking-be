@@ -47,6 +47,6 @@ export class Account extends BaseEntity {
   @OneToOne(() => UserInfo, (userInfo) => userInfo.account)
   userInfo: UserInfo
 
-  @OneToMany(() => Recipe, (recipe) => recipe.createdBy)
+  @OneToMany(() => Recipe, (recipe) => recipe.creator)
   recipes: Recipe[]
 }

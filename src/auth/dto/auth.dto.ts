@@ -16,7 +16,7 @@ export class LoginRequestDto {
   password: string
 } // Định nghĩa cấu trúc request body cho API login
 
-export class AccountPayload {
+export class AccountPayloadDto {
   @ApiProperty({ description: "User id" })
   id: string
   @ApiProperty({ description: "User email" })
@@ -28,9 +28,9 @@ export class AccountPayload {
 export class LoginResponseDto {
   @ApiProperty({
     description: "User information",
-    type: AccountPayload
+    type: AccountPayloadDto
   })
-  account: AccountPayload
+  account: AccountPayloadDto
 
   @ApiProperty({
     description: "Access token"

@@ -238,4 +238,18 @@ export class IngredientService {
 
     return messageDetail
   }
+
+  async findIngredientByIds(ids: string[]): Promise<Ingredient[]> {
+    if (!ids || ids.length === 0) {
+      throw responses.response400BadRequest("No ingredient Ids provided", null)
+    }
+
+    // Find the ingredients by IDs
+    const ingredients = await this.ingredientRepository.find({
+      where: ids.map((id) => ({ id })),
+      withDeleted: false // Only target non-deleted ingredients
+    })
+
+    return ingredients
+  }
 }
