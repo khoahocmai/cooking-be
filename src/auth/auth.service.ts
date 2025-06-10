@@ -77,15 +77,16 @@ export class AuthService {
       email: registerDto.email,
       username: registerDto.username,
       password: registerDto.password,
+      confirmPassword: registerDto.confirmPassword,
       role: registerDto.role
     }
     const account = await this.accountService.register(dataRequest)
-    return account.id
+    return account.email
   } // Đăng ký tài khoản
 
   async handleActive(data: ActiveAccountRequestType): Promise<JWTResponse> {
     const dataRequest: ActiveAccountDto = {
-      id: data.id,
+      email: data.email,
       code: data.code
     }
     const user = await this.accountService.handleActive(dataRequest)

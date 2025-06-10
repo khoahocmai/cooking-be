@@ -90,6 +90,14 @@ export class RegisterDto {
     pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,100}$"
   })
   password: string
+  @ApiProperty({
+    example: "P@s5Word",
+    description: "Confirm password. Must be the same as password",
+    minLength: 8,
+    maxLength: 100,
+    pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,100}$"
+  })
+  confirmPassword: string
   @ApiPropertyOptional({
     example: "ADULT",
     description: "The role of the user. If not provided, the default role is 'ADULT'"
@@ -142,10 +150,10 @@ export class RegisterChildDto {
 
 export class ActiveAccountDto {
   @ApiProperty({
-    example: "abcdef-123456-lmnopq",
-    description: "The id of the user"
+    example: "gmail@example.com",
+    description: "The email of the user"
   })
-  id: string
+  email: string
 
   @ApiProperty({
     example: "123456",

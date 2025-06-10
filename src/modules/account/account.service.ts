@@ -269,6 +269,13 @@ export class AccountService {
       const userRole = registerDto.role.toUpperCase()
       if (Role[userRole] === undefined) throw responses.response400BadRequest("Role is not valid")
 
+      if (registerDto.password !== registerDto.confirmPassword) {
+        throw responses.response400BadRequest("Password and confirm password do not match", {
+          password: registerDto.password,
+          confirmPassword: registerDto.confirmPassword
+        })
+      }
+
       // hash password
       const hashPassword = await hashPasswordHelper(registerDto.password)
       const codeId = this.generateSixDigitCode()
@@ -327,7 +334,7 @@ export class AccountService {
   } // Đăng ký tài khoản
 
   async handleActive(data: ActiveAccountDto): Promise<Account> {
-    const condition = { id: data.id, codeId: data.code }
+    const condition = { email: data.email, codeId: data.code }
     const user = await this.findUserByCondition(condition)
     if (!user) {
       throw responses.response400BadRequest("OTP is expired or not correct")
@@ -336,7 +343,7 @@ export class AccountService {
     const isBeforeCheck = isBefore(user.codeExpired)
     if (isBeforeCheck) {
       // Valid => update user
-      await this.accountRepository.update({ id: data.id }, { codeId: null, codeExpired: null, isActive: true })
+      await this.accountRepository.update({ email: data.email }, { codeId: null, codeExpired: null, isActive: true })
       return user
     } else {
       throw responses.response400BadRequest("OTP is expired or not correct")
@@ -361,18 +368,17 @@ export class AccountService {
     })
 
     // Send email
-    // this.mailerService.sendMail({
-    //   to: user.email, // list of receivers
-    //   subject: "Kích hoạt tài khoản của bạn tại @koine", // Subject line
-    //   template: "register",
-    //   context: {
-    //     name: user.email,
-    //     activationCode: codeId,
-    //     userId: user.id,
-    //     time: new Date().toString(),
-    //     logoUrl: this.configService.get<string>("LOGO_URL")
-    //   }
-    // })
+    this.mailerService.sendMail({
+      to: user.email, // list of receivers
+      subject: "Activate your account at Cooking DK",
+      template: "register",
+      context: {
+        name: user.email,
+        activationCode: codeId,
+        userId: user.id,
+        time: user.codeExpired
+      }
+    })
 
     return "Please check your email to get the activation code"
   } // Gửi lại mã code kích hoạt
@@ -398,18 +404,17 @@ export class AccountService {
     user.codeExpired = getTime(5, "minutes")
     await this.accountRepository.save(user)
 
-    // this.mailerService.sendMail({
-    //   to: user.email, // list of receivers
-    //   subject: "Kích hoạt tài khoản của bạn tại @koine", // Subject line
-    //   template: "register",
-    //   context: {
-    //     name: user.email,
-    //     activationCode: codeId,
-    //     userId: user.id,
-    //     time: getTime(),
-    //     logoUrl: this.configService.get<string>("LOGO_URL")
-    //   }
-    // })
+    this.mailerService.sendMail({
+      to: user.email, // list of receivers
+      subject: "Kích hoạt tài khoản của bạn tại @koine", // Subject line
+      template: "register",
+      context: {
+        name: user.email,
+        activationCode: codeId,
+        userId: user.id,
+        time: user.codeExpired
+      }
+    })
 
     return "Please check your email to get the activation code"
   }

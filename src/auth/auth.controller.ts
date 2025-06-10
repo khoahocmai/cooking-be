@@ -111,19 +111,19 @@ export class AuthController {
     return responses.response200OK(response)
   }
 
-  @Post("retry-active/:id")
-  @Public()
-  @ApiOperation({ summary: "Retry-active account" })
-  @ApiParam({ name: "id", required: true, type: "string", description: "Id of account" })
-  @ApiOkResponse({ description: "Please check your email to get the activation code" })
-  @ApiBadRequestResponse({ description: "Account not found or has been deleted" })
-  @ApiConflictResponse({ description: "Account is already activated" })
-  async retryActive(
-    @Param("id", new ZodValidationPipe(UUIDParamRequest)) id: UUIDParamRequestType
-  ): Promise<BaseResponseWithDataType> {
-    const response = await this.authService.retryActive(id)
-    return responses.response200OK(response)
-  }
+  // @Post("retry-active")
+  // @Public()
+  // @ApiOperation({ summary: "Retry-active account" })
+  // @ApiParam({ name: "id", required: true, type: "string", description: "Id of account" })
+  // @ApiOkResponse({ description: "Please check your email to get the activation code" })
+  // @ApiBadRequestResponse({ description: "Account not found or has been deleted" })
+  // @ApiConflictResponse({ description: "Account is already activated" })
+  // async retryActive(
+  //   @Param("id", new ZodValidationPipe(UUIDParamRequest)) id: UUIDParamRequestType
+  // ): Promise<BaseResponseWithDataType> {
+  //   const response = await this.authService.retryActive(id)
+  //   return responses.response200OK(response)
+  // }
 
   @Post("forgot-password/request")
   @Public()

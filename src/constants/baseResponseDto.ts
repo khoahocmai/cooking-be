@@ -1,9 +1,9 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
 
 export class BaseResponseDto {
-  @ApiProperty({ description: "Response status" })
+  @ApiProperty({ description: "Response status", example: 200 })
   statusCode: number
-  @ApiProperty({ description: "Response message" })
+  @ApiProperty({ description: "Response message", example: "OK" })
   message: string
   @ApiPropertyOptional({ description: "Response message detail" })
   messageDetail: string

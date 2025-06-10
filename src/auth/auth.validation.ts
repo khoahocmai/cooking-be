@@ -44,13 +44,14 @@ export const RegisterRequest = z
           "Password must be 8-100 characters long, including at least one uppercase letter, one lowercase letter, one number, and one special character"
       })
       .trim(),
+    confirmPassword: z.string().trim(),
     role: z.string().trim().optional().default("USER")
   })
   .strict()
 export type RegisterRequestType = z.TypeOf<typeof RegisterRequest>
 
 export const RegisterResponse = BaseResponseWithData.extend({
-  data: z.string()
+  data: z.string().email()
 }).strict()
 export type RegisterResponseType = z.TypeOf<typeof RegisterResponse>
 
@@ -91,7 +92,7 @@ export type RegisterChildRequestType = z.TypeOf<typeof RegisterChildRequest>
 
 export const ActiveAccountRequest = z
   .object({
-    id: z.string().trim().uuid("Invalid id"),
+    email: z.string().email(),
     code: z.string().trim()
   })
   .strict()
